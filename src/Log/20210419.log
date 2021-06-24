@@ -1,0 +1,12 @@
+20210419151210583:[E]:StatementCallback; SQL [insert into test_table (id, number, date) values('XXX', null, null)]; ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。; nested exception is org.postgresql.util.PSQLException: ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。20210419151421207:[E]:StatementCallback; SQL [insert into test_table (id, number, date) values('XXX', null, null)]; ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。; nested exception is org.postgresql.util.PSQLException: ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。20210419151450288:[E]:StatementCallback; SQL [insert into test_table (id, number, date) values('XXX', null, null)]; ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。; nested exception is org.postgresql.util.PSQLException: ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。20210419151740950:[E]:StatementCallback; SQL [insert into test_table (id, number, date) values('XXX', null, null)]; ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。; nested exception is org.postgresql.util.PSQLException: ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。
+20210419151740950:[E]:StatementCallback; SQL [insert into test_table (id, number, date) values('XXX', null, null)]; ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。; nested exception is org.postgresql.util.PSQLException: ERROR: 重複したキー値は一意性制約"test_table_pkey"違反となります
+  詳細: キー (id)=(XXX) はすでに存在します。

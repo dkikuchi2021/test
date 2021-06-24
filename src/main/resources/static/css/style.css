@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.container {
+  border: 1px solid red;
+  margin: 10px;
+}
+.row {
+  margin: 10px;
+  border: 1px solid blue;
+}
+.kakomi-box2 {
+ margin: 2em auto;
+ padding: 1em;
+ width: 90%;
+ color: #666; /* 文字色 */
+ background-color: #f7f7f7; /* 背景色 */
+ border: 1px solid #ccc; /* 枠線 */
+}

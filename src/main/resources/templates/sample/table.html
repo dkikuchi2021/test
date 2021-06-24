@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<link rel="stylesheet" media="all" th:href="@{/css/style.css}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+	if ((navigator.userAgent.indexOf('iPhone') > 0)) {
+		//iPhoneだったときの処理
+		document.write("<p>JavaScript テスト</p>");
+	}
+
+	function getData() {
+		// jQueryのAjaxにてDemoControllerクラスのsearchメソッドを呼び出す
+		$.ajax({
+			url : "/sample/searchajax",
+			dataType : "text",
+			type : "GET"
+		// Ajaxが正常終了した場合
+		}).done(
+				function(data, textStatus, jqXHR) {
+					// 該当するデータが無かった場合
+					if (!data) {
+						alert("該当するデータはありませんでした");
+						return;
+					}
+					// 画面のtableタグの全てのtrタグを削除
+					$('#ajaxTbl').find("tr:gt(0)").remove();
+					// 該当するデータがあった場合は、取得したUserDataオブジェクトのリストを
+					// 画面のtableタグに表示
+					// その際、名前・性別・メモはデコードする
+					const dataList = JSON.parse(data);
+					let i = 0;
+					for (i = 0; i < dataList.length; i++) {
+						let trTag = $("<tr />");
+						
+						trTag.append($("<td></td>").text(decodeURI(dataList[i].rownum)));
+						trTag.append($("<td></td>").text(decodeURI(dataList[i].tableName)));
+						trTag.append($("<td></td>").text(decodeURI(dataList[i].id)));
+						trTag.append($("<td></td>").text(decodeURI(dataList[i].number)));
+						trTag.append($("<td></td>").text(decodeURI(dataList[i].date)));
+						trTag.append($("<td><img src=" + dataList[i].gazou  + "></img></td>"));
+						$('#ajaxTbl').append(trTag);
+					}
+					// Ajaxが異常終了した場合
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+			alert("エラーが発生し、データが取得できませんでした");
+		});
+	}
+</script>
+<body>
+	<p>
+		<span th:text="${hello}"></span>
+	</p>
+	<form action="/sample/table" method="post">
+		<input type="submit" name="search" value="検索" />
+	</form>
+
+	<div class="container">
+		<table>
+			<thead>
+				<tr>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">インデックス</font></th>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">テーブル名</font></th>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">id</font></th>
+					<th bgcolor="#EE0000" width="150"><font color="#FFFFFF">number</font></th>
+					<th bgcolor="#EE0000" width="200"><font color="#FFFFFF">date</font></th>
+					<th bgcolor="#EE0000" width="200"><font color="#FFFFFF">画像</font></th>
+				</tr>
+			</thead>
+			<tr th:each="data : ${testTableModelDataList}" th:object="${data}">
+				<td class="kakomi-box2" th:text="*{rownum}"></td>
+				<td class="kakomi-box2" th:text="*{tableName}"></td>
+				<td class="kakomi-box2" th:text="*{id}"></td>
+				<td class="kakomi-box2" th:text="*{number}"></td>
+				<td class="kakomi-box2" th:text="*{date}"></td>
+				<td class="kakomi-box2"><img th:src="*{gazou}" />
+				<td>
+			</tr>
+		</table>
+	</div>
+
+	<input type="submit" name="searchajax" value="ajax検索"	onclick="getData();" />
+	
+		<table id="ajaxTbl">
+				<tr>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">インデックス</font></th>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">テーブル名</font></th>
+					<th bgcolor="#EE0000"><font color="#FFFFFF">id</font></th>
+					<th bgcolor="#EE0000" width="150"><font color="#FFFFFF">number</font></th>
+					<th bgcolor="#EE0000" width="200"><font color="#FFFFFF">date</font></th>
+					<th bgcolor="#EE0000" width="200"><font color="#FFFFFF">画像</font></th>
+				</tr>
+		</table>
+	
+</body>
+</html>
